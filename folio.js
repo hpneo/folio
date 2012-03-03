@@ -16,11 +16,9 @@ Folio = function(options){
     self.views.splice(self.views.indexOf(view), 1);
   };
 
-  this.getCurrentView = function(){
-    return new Folio.View({
-      node: Folio.body.find('.view.current')
-    });
-  }
+  this.currentView = new Folio.View({
+    node: Folio.body.find('.view.current')
+  });
 
   this.initViews = function(){
     $(self.views).each(function(index, item){
@@ -31,7 +29,7 @@ Folio = function(options){
   this.slideTo = function(selector){
     body = Folio.body;
 
-    currentView = self.getCurrentView().node;
+    currentView = self.currentView.node;
     switch(typeof(selector)){
       case 'number':
         nextView = self.views[selector];
@@ -81,13 +79,16 @@ Folio = function(options){
       complete: function(){
         nextView.addClass('current');
         currentView.removeClass('current');
-        self.getCurrentView().initPages();
+        self.currentView = new Folio.View({
+          node: Folio.body.find('.view.current')
+        });
+        self.currentView.initPages();
       }
     });
   };
 
   this.initViews();
-  this.getCurrentView().initPages();
+  this.currentView.initPages();
 };
 
 Folio.View = function(options){
@@ -111,16 +112,14 @@ Folio.View = function(options){
     return self.options.node.hasClass('current');
   };
 
-  this.getCurrentPage = function(){
-    return new Folio.Page({
-      node: self.options.node.find('.page.current')
-    });
-  }
+  this.currentPage = new Folio.Page({
+    node: self.options.node.find('.page.current')
+  });
 
   this.slideTo = function(selector){
     body = Folio.body;
 
-    currentPage = self.getCurrentPage().node;
+    currentPage = self.currentPage.node;
     switch(typeof(selector)){
       case 'number':
         nextPage = self.pages[selector];
@@ -170,6 +169,9 @@ Folio.View = function(options){
       complete: function(){
         nextPage.addClass('current');
         currentPage.removeClass('current');
+        self.currentPage = new Folio.Page({
+          node: self.options.node.find('.page.current')
+        });
       }
     });
   };
