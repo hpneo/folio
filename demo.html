@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Demo</title>
+  <style type="text/css">
+    html, body{
+      width:100%;
+      height:100%;
+      margin:0;
+      overflow: hidden;
+      font-family:'Monaco', 'Ubuntu Mono', 'Consolas';
+      font-size:2em;
+    }
+    .view, .page{
+      display: block;
+      position: absolute;
+      width:100%;
+      height:100%;
+      top:0;
+      left:0;
+      line-height:3em;
+      font-size:66px;
+      text-align:center;
+      font-weight:bold;
+    }
+    h2{
+      margin:0em;
+    }
+    a{
+      color:#333;
+    }
+    #view1{
+      background:#999999;
+    }
+    #view2{
+      background:#ece3e3;
+    }
+    #page1{
+      background:#f6f68d;
+    }
+    #page2{
+      background:#f29c55;
+    }
+    #page3{
+      background:#f2555d;
+    }
+  </style>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="folio.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      window.folio = new Folio();
+    });
+    $(document).on('click', '#view_1', function(e){
+      e.preventDefault();
+      window.folio.slideTo(0);
+    });
+    $(document).on('click', '#view_2', function(e){
+      e.preventDefault();
+      window.folio.slideTo(1);
+    });
+    $(document).on('click', '#page_1', function(e){
+      e.preventDefault();
+      window.folio.getCurrentView().slideTo(0);
+    });
+    $(document).on('click', '#page_2', function(e){
+      e.preventDefault();
+      window.folio.getCurrentView().slideTo(1);
+    });
+    $(document).on('click', '#page_3', function(e){
+      e.preventDefault();
+      window.folio.getCurrentView().slideTo(2);
+    });
+  </script>
+</head>
+<body>
+  <div class="view current" id="view1">
+    <div class="page" id="page1">
+      <a id="view_2" href="#">to view2</a>
+      <h2>view1#page1</h2>
+      <a id="page_2" href="#">to view1#page2</a>
+    </div>
+    <div class="page" id="page2">
+      <h2>view1#page2</h2>
+      <a id="page_3" href="#">to view1#page3</a>
+    </div>
+    <div class="page" id="page3">
+      <h2>view1#page3</h2>
+      <a id="page_1" href="#">to view1#page1</a>
+    </div>
+  </div>
+  <div class="view" id="view2">
+    <div class="page" id="view2_page1">
+      <a id="view_1" href="#">to view1</a>
+      <h2>view2#page1</h2>
+      <a id="page_2" href="#">to view1#page2</a>
+    </div>
+    <div class="page" id="view2_page2">
+      <h2>view2#page2</h2>
+      <a id="page_1" href="#">to view2#page1</a>
+    </div>
+  </div>
+</body>
+</html>
