@@ -25,8 +25,6 @@
       this.views.splice(this.views.indexOf(view), 1);
     };
 
-    this.currentView = getcurrentView(parent, settings.viewClass).view({parent: parent});
-
     this.initViews = function(){
       this.views = $(this.views).map(function(index, item){
         item = item.view({parent: parent});
@@ -99,6 +97,7 @@
     };
 
     this.initViews();
+    this.currentView = getcurrentView(parent, settings.viewClass).view({parent: parent});
 
     return this;
   };
@@ -134,8 +133,6 @@
     this.isCurrent = function(){
       return this.hasClass('current');
     };
-
-    this.currentPage = getcurrentPage(self, settings.pageClass).page({parent: self});
 
     this.slideTo = function(selector){
       body = settings.parent;
@@ -208,6 +205,7 @@
     };
 
     this.initPages();
+    this.currentPage = getcurrentPage(self, settings.pageClass).page({parent: self});
 
     return this;
   };
