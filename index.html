@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Folio.js - Slide-based web app with jQuery</title>
+  <link href='http://fonts.googleapis.com/css?family=Convergence|Bitter|Droid+Sans' rel='stylesheet' type='text/css' />
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/HPNeo/folio/master/folio.js"></script>
+  <script type="text/javascript">
+    var folio;
+    $(document).ready(function(){
+      $('#views').height($('body').height()-($('#nav').outerHeight()+$('#header').outerHeight()));
+      folio = $('#views').folio();
+    });
+
+    $(document).on('click', '#nav li a', function(e){
+      e.preventDefault();
+      selector = '#'+$(this).attr('id').replace('to_', '');
+      folio.currentView.slideTo(selector);
+    });
+  </script>
+</head>
+<body>
+  <ul id="nav">
+    <li><a href="#" id="to_view_1_page_1">Requirements</a></li>
+    <li><a href="#" id="to_view_1_page_2">Usage</a></li>
+  </ul>
+  <div id="header">
+    <h1>Folio.js</h1>
+    <h2>Slide-based web app with jQuery</h2>
+  </div>
+  <div id="views">
+    <div class="view" id="view_1">
+      <div class="page" id="view_1_page_1">
+        <h3>Requirements</h3>
+      </div>
+      <div class="page" id="view_1_page_2">
+        <h3>Usage</h3>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
