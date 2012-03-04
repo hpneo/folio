@@ -35,6 +35,8 @@
 
         return item;
       });
+      if(this.views.length>0)
+        this.views[0].addClass('current');
     };
 
     this.slideTo = function(selector){
@@ -201,7 +203,8 @@
 
         return item;
       });
-      $(self.pages)[0].addClass('current');
+      if(this.pages.length>0)
+        this.pages[0].addClass('current');
     };
 
     this.initPages();
