@@ -4,11 +4,15 @@
   <title>Folio.js - Slide-based web app with jQuery</title>
   <link href='http://fonts.googleapis.com/css?family=Convergence|Bitter|Droid+Sans' rel='stylesheet' type='text/css' />
   <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="prettify/prettify.css" />
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://raw.github.com/HPNeo/folio/master/folio.js"></script>
+  <script type="text/javascript" src="prettify/prettify.js"></script>
   <script type="text/javascript">
     var folio;
     $(document).ready(function(){
+      prettyPrint();
+
       $('#views').height($('body').height()-($('#nav').outerHeight()+$('#header').outerHeight()));
       folio = $('#views').folio();
     });
@@ -24,6 +28,7 @@
   <ul id="nav">
     <li><a href="#" id="to_view_1_page_1">Requirements</a></li>
     <li><a href="#" id="to_view_1_page_2">Usage</a></li>
+    <li><a href="#" id="to_view_1_page_3">Download</a></li>
   </ul>
   <div id="header">
     <h1>Folio.js</h1>
@@ -34,7 +39,7 @@
       <div class="page" id="view_1_page_1">
         <h3>Requirements</h3>
         <p>The site must have the following HTML structure:
-          <pre>&lt;div class="view"&gt;
+          <pre class="prettyprint lang-html">&lt;div class="view"&gt;
   &lt;div class="page"&gt;&lt;/div&gt;
   &lt;div class="page"&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -47,8 +52,24 @@
         </p>
       </div>
       <div class="page" id="view_1_page_2">
-        <h3>Usage</h3>
-        <pre class="big">var folio = $('#slide_wrapper').folio();</pre>
+        <div class="scroll_wrapper">
+          <div class="scroll_content">
+            <h3>Usage</h3>
+            <h4>Initialize:</h4>
+            <pre class="prettyprint big lang-js">var folio = $('#slide_wrapper').folio();</pre>
+            <h4>Get current view:</h4>
+            <pre class="prettyprint big lang-js">var view = folio.currentView;</pre>
+            <h4>Slide to page:</h4>
+            <pre class="prettyprint big lang-js">view.slideTo('#page_2');</pre>
+            <h4>Slide to view:</h4>
+            <pre class="prettyprint big lang-js">folio.slideTo('#view_2');</pre>
+          </div>
+        </div>
+      </div>
+      <div class="page" id="view_1_page_3">
+        <h3>Download</h3>
+        <a href="https://raw.github.com/HPNeo/folio/master/folio.js" class="btn big">Download</a>
+        <a href="https://github.com/hpneo/folio">or watch the GitHub repo</a>
       </div>
     </div>
   </div>
