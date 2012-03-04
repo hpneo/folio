@@ -15,6 +15,19 @@ html, body{
   left: 0;
 }
 
+p{
+  padding:20px;
+}
+
+pre{
+  font-family: 'Monaco', 'Consolas', 'Ubuntu Mono';
+  padding:0 20px;
+}
+pre.big{
+  font-size:40px;
+  text-align:center;
+}
+
 h1{
   font-family: 'Convergence';
   font-size: 95px;
@@ -32,6 +45,10 @@ h2{
   text-align:center;
   margin: 6px 0;
   text-transform:lowercase;
+}
+h3{
+  text-transform:uppercase;
+  margin:20px;
 }
 
 #nav, #header, #views{
