@@ -49,7 +49,14 @@
   <script type="text/javascript" src="folio.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      window.folio = $('body').folio();
+      window.folio = $('body').folio({
+        afterSlideView: function(e){
+          console.log(e);
+        },
+        afterSlidePage: function(e){
+          console.log(e);
+        }
+      });
       //window.folio = new Folio();
     });
     $(document).on('click', '#view_1', function(e){
