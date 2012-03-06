@@ -11,11 +11,12 @@
       pageClass: '.page',
       parent: this,
       afterSlideView: function(){},
-      afterSlidePage: function(){}
+      easingView: 'easeInOutQuart',
+      durationView: 1000
     }, options);
 
     this.views = parent.find(settings.viewClass).map(function(index, item){
-      return $(item).view($.extend(settings, {parent: parent}));
+      return $(item).view(settings);
     });
 
     this.addView = function(view, args){
@@ -29,7 +30,7 @@
 
     this.initViews = function(){
       this.views = $(this.views).map(function(index, item){
-        item = item.view($.extend(settings, {parent: parent}));
+        item = item.view(settings);
 
         item.css('top', parent.height()*index);
 
@@ -80,19 +81,19 @@
       currentView.animate({
         'top': current_top
       }, {
-        duration: 700,
-        easing: 'swing'
+        duration: settings.durationView,
+        easing: settings.easingView
       });
 
       nextView.animate({
         'top': '0px'
       }, {
-        duration: 700,
-        easing: 'swing',
+        duration: settings.durationView,
+        easing: settings.easingView,
         complete: function(){
           nextView.addClass('current');
           currentView.removeClass('current');
-          parent.currentView = getcurrentView(parent, settings.viewClass).view($.extend(settings, {parent: parent}));
+          parent.currentView = getcurrentView(parent, settings.viewClass).view(settings);
           parent.currentView.initPages();
 
           e = {};
@@ -105,7 +106,7 @@
     };
 
     this.initViews();
-    this.currentView = getcurrentView(parent, settings.viewClass).view($.extend(settings, {parent: parent}));
+    this.currentView = getcurrentView(parent, settings.viewClass).view(settings);
 
     return this;
   };
@@ -122,7 +123,10 @@
     var settings = $.extend({
       viewClass: '.view',
       pageClass: '.page',
-      parent: this
+      parent: this,
+      afterSlidePage: function(){},
+      easingPage: 'easeInOutQuart',
+      durationPage: 1000
     }, options);
 
     this.pages = self.find(settings.pageClass).map(function(index, item){
@@ -183,15 +187,15 @@
       currentPage.animate({
         'left': current_left
       }, {
-        duration: 700,
-        easing: 'swing'
+        duration: settings.durationPage,
+        easing: settings.easingPage
       });
 
       nextPage.animate({
         'left': '0px'
       }, {
-        duration: 700,
-        easing: 'swing',
+        duration: settings.durationPage,
+        easing: settings.easingPage,
         complete: function(){
           nextPage.addClass('current');
           currentPage.removeClass('current');

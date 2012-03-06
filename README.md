@@ -13,6 +13,10 @@ Usage
 * pageClass:  class name used to define pages, `.page` by default.
 * afterSlideView: callback that will fire after slide to another view.
 * afterSlidePage: callback that will fire after slide to another page.
+* easingView: easing function for view animations.
+* easingPage: easing function for page animations.
+* durationView: duration (in ms) for view animations.
+* durationPage: duration (in ms) for page animations.
 
 `folio` will return `$('#slide_wrapper')` with some extra methods, like:
 
